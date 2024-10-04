@@ -23,7 +23,7 @@ public class UsuarioController {
 
     @GetMapping("/{email}")
     public ResponseEntity<UsuarioDTO> buscarPorEmail(@PathVariable String email) {
-        Optional<UsuarioDTO> usuarioDTO = usuarioService.buscarPorEmail(email);
+        Optional<UsuarioDTO>  usuarioDTO = usuarioService.buscarPorEmail(email);
         return usuarioDTO.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
