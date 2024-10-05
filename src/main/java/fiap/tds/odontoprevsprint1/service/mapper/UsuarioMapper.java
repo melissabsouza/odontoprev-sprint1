@@ -1,4 +1,4 @@
-package fiap.tds.odontoprevsprint1.mapper;
+package fiap.tds.odontoprevsprint1.service.mapper;
 
 import fiap.tds.odontoprevsprint1.dto.UsuarioDTO;
 import fiap.tds.odontoprevsprint1.models.Usuario;
