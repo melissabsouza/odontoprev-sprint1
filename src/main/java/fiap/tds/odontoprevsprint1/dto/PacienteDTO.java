@@ -12,7 +12,7 @@ public class PacienteDTO {
     private String nome;
     private Date dataNascimento;
     private String genero;
-    private Clinica clinica;
-    private Endereco endereco;
-    private Telefone telefone;
+    private ClinicaDTO clinica;
+    private EnderecoDTO endereco;
+    private TelefoneDTO telefone;
 }
