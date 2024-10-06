@@ -46,7 +46,7 @@ public class ClinicaService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<ClinicaDTO> buscarPorCpf(Long cnpj){
+    public Optional<ClinicaDTO> buscarPorCnpj(Long cnpj){
         return clinicaRepository.findByCnpj(cnpj).map(clinicaMapper::toDto);
     }
 
@@ -85,4 +85,5 @@ public class ClinicaService {
         Clinica savedClinica = clinicaRepository.save(clinica);
         return clinicaMapper.toDto(savedClinica);
     }
+
 }

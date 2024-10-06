@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface AtendimentoMapper {
-    AtendimentoDTO toDTO(Atendimento atendimento);
+    AtendimentoDTO toDto(Atendimento atendimento);
     Atendimento toEntity(AtendimentoDTO atendimentoDTO);
 }
