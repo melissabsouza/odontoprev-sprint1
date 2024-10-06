@@ -1,5 +1,6 @@
 package fiap.tds.odontoprevsprint1.service;
 
+import fiap.tds.odontoprevsprint1.dto.ClinicaDTO;
 import fiap.tds.odontoprevsprint1.dto.PacienteDTO;
 import fiap.tds.odontoprevsprint1.models.*;
 import fiap.tds.odontoprevsprint1.repository.*;
@@ -33,6 +34,20 @@ public class PacienteService {
                 .stream()
                 .map(pacienteMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<PacienteDTO> buscarPorCpf(Long cpf){
+        return pacienteRepository.findByCpf(cpf).map(pacienteMapper::toDto);
+    }
+
+    public void deletePaciente(Long cpf) {
+        Optional<Paciente> pacienteExistente = pacienteRepository.findByCpf(cpf);
+        if (pacienteExistente.isPresent()) {
+            pacienteRepository.delete(pacienteExistente.get());
+        } else {
+            throw new IllegalArgumentException("Paciente não encontrado");
+        }
     }
 
     public PacienteDTO savePaciente(PacienteDTO pacienteDTO) {

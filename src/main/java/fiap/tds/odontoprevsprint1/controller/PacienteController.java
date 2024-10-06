@@ -43,12 +43,12 @@ public class PacienteController {
 
     @GetMapping("/{cpf}")
     public ResponseEntity<PacienteDTO> buscarPorCpf(@PathVariable Long cpf) {
-        Optional<PacienteDTO> clinicaDTO = pacienteService.buscarPorCpf(cpf);
+        Optional<PacienteDTO> pacienteDTO = pacienteService.buscarPorCpf(cpf);
         return pacienteDTO.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{cnpj}")
+    @DeleteMapping("/{cpf}")
     public ResponseEntity<Void> deletePaciente(@PathVariable Long cpf) {
         pacienteService.deletePaciente(cpf);
         return ResponseEntity.noContent().build();

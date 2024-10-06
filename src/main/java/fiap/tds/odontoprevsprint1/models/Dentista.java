@@ -31,7 +31,7 @@ public class Dentista {
     @Column(name = "data_contratacao", nullable = false)
     private Date dataContratacao;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cnpj_clinica", referencedColumnName = "cnpj_clinica", nullable = false)
     private Clinica clinica;
 
