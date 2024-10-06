@@ -49,9 +49,13 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Void> deletePaciente(@PathVariable Long cpf) {
-        pacienteService.deletePaciente(cpf);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deletePaciente(@PathVariable Long cpf) {
+        try {
+            pacienteService.deletePaciente(cpf);
+            return ResponseEntity.ok("Paciente deletado com sucesso.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao deletar o paciente.");
+        }
     }
 
 

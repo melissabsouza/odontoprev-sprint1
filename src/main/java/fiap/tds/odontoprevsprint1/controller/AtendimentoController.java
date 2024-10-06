@@ -3,7 +3,9 @@ package fiap.tds.odontoprevsprint1.controller;
 import fiap.tds.odontoprevsprint1.dto.AtendimentoDTO;
 import fiap.tds.odontoprevsprint1.dto.ClinicaDTO;
 import fiap.tds.odontoprevsprint1.dto.DentistaDTO;
+import fiap.tds.odontoprevsprint1.models.Atendimento;
 import fiap.tds.odontoprevsprint1.service.AtendimentoService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Atendimentos")
+@RequestMapping("/atendimentos")
 @AllArgsConstructor
 public class AtendimentoController {
     private final AtendimentoService atendimentoService;
@@ -37,13 +39,15 @@ public class AtendimentoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createAtendimento(@RequestBody AtendimentoDTO atendimentoDTO) {
+    public ResponseEntity<Atendimento> createAtendimento(@RequestBody AtendimentoDTO atendimentoDTO) {
         try {
-            AtendimentoDTO novoAtendimento = atendimentoService.saveAtendimento(atendimentoDTO);
+            Atendimento novoAtendimento = atendimentoService.createAtendimento(atendimentoDTO);
             return new ResponseEntity<>(novoAtendimento, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>("Atendimento já existente", HttpStatus.CONFLICT);
-        }
+        } catch (EntityNotFoundException e) {
 
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

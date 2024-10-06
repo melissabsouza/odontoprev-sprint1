@@ -52,26 +52,20 @@ public class AtendimentoService {
         }
     }
 
-    public AtendimentoDTO saveAtendimento(AtendimentoDTO atendimentoDTO) {
-        Optional<Atendimento> atendimentoExistente = atendimentoRepository.findById(atendimentoDTO.getId());
-        if (atendimentoExistente.isPresent()) {
-            throw new IllegalArgumentException("Atendimento já existente");
-        }
+    public Atendimento createAtendimento(AtendimentoDTO atendimentoDTO) {
+        Paciente paciente = pacienteRepository.findByCpf(atendimentoDTO.getPaciente().getCpf())
+                .orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado"));
 
-        Paciente paciente = pacienteMapper.toEntity(atendimentoDTO.getPaciente());
-        Paciente savedPaciente = pacienteRepository.save(paciente);
-
-
-        Dentista dentista = dentistaMapper.toEntity(atendimentoDTO.getDentista());
-        Dentista savedDentista = dentistaRepository.save(dentista);
+        Dentista dentista = dentistaRepository.findByCpf(atendimentoDTO.getDentista().getCpf())
+                .orElseThrow(() -> new EntityNotFoundException("Dentista não encontrado"));
 
 
         Atendimento atendimento = atendimentoMapper.toEntity(atendimentoDTO);
-        atendimento.setPaciente(savedPaciente);
-        atendimento.setDentista(savedDentista);
 
-        Atendimento savedAtendimento = atendimentoRepository.save(atendimento);
-        return atendimentoMapper.toDto(savedAtendimento);
+        atendimento.setPaciente(paciente);
+        atendimento.setDentista(dentista);
+
+        return atendimentoRepository.save(atendimento);
     }
 
 }

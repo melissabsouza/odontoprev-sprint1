@@ -43,8 +43,12 @@ public class DentistaController {
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Void> deleteDentista(@PathVariable Long cpf) {
-        dentistaService.deleteDentista(cpf);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteDentista(@PathVariable Long cpf) {
+        try {
+            dentistaService.deleteDentista(cpf);
+            return ResponseEntity.ok("Dentista deletado com sucesso.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao deletar o Dentista");
+        }
     }
 }

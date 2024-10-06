@@ -9,11 +9,12 @@ import java.util.Date;
 @Data
 @ToString
 @Entity
-@Table(name = "T_CHALLENGE_ATENTIMENTO")
+@Table(name = "T_CHALLENGE_ATENDIMENTO")
 public class Atendimento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_atendimento")
     private Long id;
 
     @Column(name = "tipo_procedimento", length = 100, nullable = false)
