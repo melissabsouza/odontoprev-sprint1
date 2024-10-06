@@ -22,7 +22,7 @@ public class Paciente {
     @Column(name = "genero_paciente", length = 100, nullable = false)
     private String genero;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cnpj_clinica", referencedColumnName = "cnpj_clinica", nullable = false)
     private Clinica clinica;
 
