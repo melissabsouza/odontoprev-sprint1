@@ -43,7 +43,7 @@ public class AtendimentoService {
         return atendimentoRepository.findById(id).map(atendimentoMapper::toDto);
     }
 
-    public void deleteAtendimento(Long cnpj) {
+    public void deleteAtendimento(Long id) {
         Optional<Atendimento> atendimentoExistente = atendimentoRepository.findById(id);
         if (atendimentoExistente.isPresent()) {
             atendimentoRepository.delete(atendimentoExistente.get());
@@ -52,59 +52,26 @@ public class AtendimentoService {
         }
     }
 
-    public ClinicaDTO saveClinica(ClinicaDTO clinicaDTO) {
-        Optional<Clinica> clinicaExistente = clinicaRepository.findByCnpj(clinicaDTO.getCnpj());
-        if (clinicaExistente.isPresent()) {
-            throw new IllegalArgumentException("Clínica já existente");
+    public AtendimentoDTO saveAtendimento(AtendimentoDTO atendimentoDTO) {
+        Optional<Atendimento> atendimentoExistente = atendimentoRepository.findById(atendimentoDTO.getId());
+        if (atendimentoExistente.isPresent()) {
+            throw new IllegalArgumentException("Atendimento já existente");
         }
 
         Paciente paciente = pacienteMapper.toEntity(atendimentoDTO.getPaciente());
         Paciente savedPaciente = pacienteRepository.save(paciente);
 
 
-        Endereco endereco = dentistaMapper.toEntity(clinicaDTO.getEndereco());
-        Endereco savedEndereco = enderecoRepository.save(endereco);
+        Dentista dentista = dentistaMapper.toEntity(atendimentoDTO.getDentista());
+        Dentista savedDentista = dentistaRepository.save(dentista);
 
 
-        Clinica clinica = clinicaMapper.toEntity(clinicaDTO);
-        clinica.setUsuario(savedUsuario);
-        clinica.setEndereco(savedEndereco);
-        clinica.setTelefone(savedTelefone);
+        Atendimento atendimento = atendimentoMapper.toEntity(atendimentoDTO);
+        atendimento.setPaciente(savedPaciente);
+        atendimento.setDentista(savedDentista);
 
-        Clinica savedClinica = clinicaRepository.save(clinica);
-        return clinicaMapper.toDto(savedClinica);
+        Atendimento savedAtendimento = atendimentoRepository.save(atendimento);
+        return atendimentoMapper.toDto(savedAtendimento);
     }
 
-}
-
-
-
-
-
-
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "tipo_procedimento", length = 100, nullable = false)
-    private String tipoProcedimento;
-
-    @Column(name = "descricao_atendimento", length = 150, nullable = false)
-    private String descricao;
-
-    @Column(name = "data_atendimento", nullable = false)
-    private Date dataAtendimento;
-
-    @Column(name = "custo_estimado", nullable = false)
-    private float custoEstimado;
-
-    @OneToOne
-    @JoinColumn(name = "cpf_paciente", referencedColumnName = "cpf_paciente", nullable = false)
-    private Paciente paciente;
-
-    @OneToOne
-    @JoinColumn(name = "cpf_dentista", referencedColumnName = "cpf_dentista", nullable = false)
-    private Dentista dentista;
 }
