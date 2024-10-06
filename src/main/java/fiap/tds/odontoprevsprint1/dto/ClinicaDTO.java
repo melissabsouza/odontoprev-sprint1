@@ -10,5 +10,5 @@ public class ClinicaDTO {
     private String nome;
     private UsuarioDTO usuario;
     private EnderecoDTO endereco;
-    private List<TelefoneDTO> telefones;
+    private TelefoneDTO telefone;
 }

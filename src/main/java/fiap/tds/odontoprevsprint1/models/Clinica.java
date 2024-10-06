@@ -26,7 +26,9 @@ public class Clinica {
     @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco", nullable = false)
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "clinica", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Telefone> telefones;
+    @OneToOne
+    @JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone")
+    private Telefone telefone;
+
 
 }

@@ -20,5 +20,5 @@ public class Usuario {
     private String senha;
     @Enumerated(EnumType.STRING)
     @Column(name = "status_usuario", nullable = false)
-    private StatusUsuario status;
+    private StatusUsuario status = StatusUsuario.ATIVO;
 }

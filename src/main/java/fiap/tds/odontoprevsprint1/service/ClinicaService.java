@@ -1,6 +1,7 @@
 package fiap.tds.odontoprevsprint1.service;
 
 import fiap.tds.odontoprevsprint1.dto.ClinicaDTO;
+import fiap.tds.odontoprevsprint1.dto.UsuarioDTO;
 import fiap.tds.odontoprevsprint1.models.Clinica;
 import fiap.tds.odontoprevsprint1.models.Endereco;
 import fiap.tds.odontoprevsprint1.models.Telefone;
@@ -37,13 +38,17 @@ public class ClinicaService {
     private TelefoneMapper telefoneMapper;
 
     @Transactional
-    public List<ClinicaDTO> getAllClinica(){
+    public List<ClinicaDTO> getAllClinicas(){
         return clinicaRepository.findAll()
                 .stream()
                 .map(clinicaMapper::toDto)
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public Optional<ClinicaDTO> buscarPorCnpj(Long cnpj){
+        return clinicaRepository.findByCnpj(cnpj).map(clinicaMapper::toDto);
+    }
 
 
     public ClinicaDTO saveClinica(ClinicaDTO clinicaDTO) {
@@ -59,13 +64,15 @@ public class ClinicaService {
         Endereco endereco = enderecoMapper.toEntity(clinicaDTO.getEndereco());
         Endereco savedEndereco = enderecoRepository.save(endereco);
 
-        // Mapeando e salvando os telefones
-        List<Telefone> telefones = clinicaDTO.getTelefones().stream()
-                .map(telefoneMapper::toEntity)
-                .collect(Collectors.toList());
-        List<Telefone> savedTelefones = telefoneRepository.saveAll(telefones);
+        Telefone telefone = telefoneMapper.toEntity(clinicaDTO.getTelefone());
+        Telefone savedTelefone = telefoneRepository.save(telefone);
+
 
         Clinica clinica = clinicaMapper.toEntity(clinicaDTO);
+        clinica.setUsuario(savedUsuario);
+        clinica.setEndereco(savedEndereco);
+        clinica.setTelefone(savedTelefone);
+
         Clinica savedClinica = clinicaRepository.save(clinica);
         return clinicaMapper.toDto(savedClinica);
     }

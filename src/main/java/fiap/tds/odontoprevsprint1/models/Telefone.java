@@ -21,17 +21,4 @@ public class Telefone {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_telefone", nullable = false)
     private TipoTelefone tipo;
-
-
-    @ManyToOne
-    @JoinColumn(name = "cnpj_clinica", referencedColumnName = "cnpj_clinica")
-    private Clinica clinica;
-
-    @ManyToOne
-    @JoinColumn(name = "cpf_paciente", referencedColumnName = "cpf_paciente")
-    private Paciente paciente;
-
-    @ManyToOne
-    @JoinColumn(name = "cpf_dentista", referencedColumnName = "cpf_dentista")
-    private Dentista dentista;
 }
