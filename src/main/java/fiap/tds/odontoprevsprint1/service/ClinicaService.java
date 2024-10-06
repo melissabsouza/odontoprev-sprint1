@@ -50,6 +50,15 @@ public class ClinicaService {
         return clinicaRepository.findByCnpj(cnpj).map(clinicaMapper::toDto);
     }
 
+    public void deleteClinica(Long cnpj) {
+        Optional<Clinica> clinicaExistente = clinicaRepository.findByCnpj(cnpj);
+        if (clinicaExistente.isPresent()) {
+            clinicaRepository.delete(clinicaExistente.get());
+        } else {
+            throw new IllegalArgumentException("Clínica não encontrada");
+        }
+    }
+
 
     public ClinicaDTO saveClinica(ClinicaDTO clinicaDTO) {
         Optional<Clinica> clinicaExistente = clinicaRepository.findByCnpj(clinicaDTO.getCnpj());

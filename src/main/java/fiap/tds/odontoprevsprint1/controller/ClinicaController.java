@@ -28,6 +28,12 @@ public class ClinicaController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{cnpj}")
+    public ResponseEntity<Void> deleteClinica(@PathVariable Long cnpj) {
+        clinicaService.deleteClinica(cnpj);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping
     public ResponseEntity<?> createClinica(@RequestBody ClinicaDTO clinicaDTO) {
         try {
