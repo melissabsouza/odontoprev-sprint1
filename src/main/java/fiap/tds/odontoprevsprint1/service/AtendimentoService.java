@@ -48,7 +48,7 @@ public class AtendimentoService {
         if (atendimentoExistente.isPresent()) {
             atendimentoRepository.delete(atendimentoExistente.get());
         } else {
-            throw new IllegalArgumentException("Atendimento não encontrado");
+            throw new IllegalArgumentException("Atendimento deletado");
         }
     }
 

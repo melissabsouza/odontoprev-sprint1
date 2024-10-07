@@ -399,3 +399,28 @@ Resposta (200 OK):
   "message": "Atendimento deletado."
 }
 ```
+# Testes no Postman 
+Testes no postman: \
+Link: [teste-api-sprint-1.postman_collection](teste-api-sprint-1.postman_collection)
+
+---
+
+# Diagramas de Entidade e Relacionamento
+
+![Logico](src/main/resources/diagramas/Logicalfinal.png)
+![Relacional](src/main/resources/diagramas/Relationalfinal.png)
+
+---
+# Diagrama de Classes
+
+![Classes]()
+
+---
+
+# Protótipo
+Link: https://www.figma.com/design/uNhAX2GxrdUcTTEWqlcRrb/Challenge-Odontoprev?node-id=0-1&m=dev&t=Tw48bZ3jF8djXHbU-1
+
+# Vídeo
+Link: 
+
+
