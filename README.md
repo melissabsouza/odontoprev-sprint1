@@ -433,7 +433,7 @@ corrigir essas inconsistências para garantir um mapeamento mais adequado e a in
 
 ---
 # Vídeo
-🔗 -todo
+🔗 [Pitch](https://www.youtube.com/watch?v=OHVeFk5sXEg)
 
 ---
  
@@ -447,6 +447,7 @@ corrigir essas inconsistências para garantir um mapeamento mais adequado e a in
   - COMPLIANCE & QUALITY ASSURANCE
   - DISRUPTIVE ARCHITECTURES: IOT, IOB & GENERATIVE IA
   - MOBILE APP DEVELOPMENT
+  - PITCH
     ### [GitHub/lissCez](https://github.com/lissCez)
 
 ### 2. Melissa Barbosa de Souza - RM 552535
