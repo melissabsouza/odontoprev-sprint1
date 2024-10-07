@@ -424,7 +424,7 @@ corrigir essas inconsistências para garantir um mapeamento mais adequado e a in
 ---
 # Diagrama de Classes
 
-![Classes]() -todo
+![Classes](src/main/resources/diagramas/Class-Diagram0.jpg) 
 
 ---
 
