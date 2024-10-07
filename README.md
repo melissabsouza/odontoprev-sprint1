@@ -1,12 +1,10 @@
 
-## Dental insurance API
+## Dental Insurance API
 
 #### Visão Geral
-A API OdontoPrev tem como objetivo gerenciar dados de clínicas odontológicas, pacientes, dentistas e atendimentos. Ela permite realizar operações CRUD (Criar, Ler, Atualizar, Deletar) para essas entidades e fornece um ponto central de controle para a administração dos dados.
+A API Dental Insurance gerencia dados de clínicas odontológicas, pacientes, dentistas e atendimentos, servindo como base para um aplicativo móvel de armazenamento de informações sobre sinistros odontológicos. Ela permite operações CRUD para essas entidades, oferecendo um maior controle para administração dos dados. Essas informações serão usadas para rastrear sinistros relacionados aos atendimentos.
 
-Base URL\
-URL Base: http://localhost:8080/
-
+-- 
 ### Endpoints
 1. Clínicas: 
 #### GET /clinicas 
@@ -401,7 +399,7 @@ Resposta (200 OK):
 ```
 # Testes no Postman 
 Testes no postman: \
-Link: [teste-api-sprint-1.postman_collection](teste-api-sprint-1.postman_collection)
+🔗 [teste-api-sprint-1.postman_collection](teste-api-sprint-1.postman_collection)
 
 ---
 
@@ -410,17 +408,60 @@ Link: [teste-api-sprint-1.postman_collection](teste-api-sprint-1.postman_collect
 ![Logico](src/main/resources/diagramas/Logicalfinal.png)
 ![Relacional](src/main/resources/diagramas/Relationalfinal.png)
 
+#### Relacionamentos 
+
+- Usuários estão associados a clínicas. Cada clínica pode ter um único administrador.
+- Endereços são compartilhados entre clínicas, pacientes e dentistas, permitindo reutilização e evitando duplicação de dados.
+- Pacientes e dentistas estão associados a clínicas, o que indica que eles estão vinculados a um único local de atendimento.
+- Atendimentos estão diretamente relacionados a pacientes e dentistas, permitindo o rastreamento de qual atendimento foi realizado por qual dentista e para qual paciente.
+- Telefones podem ser associados a clínicas, pacientes e dentistas, permitindo que cada entidade tenha seus números de contato.
+
+Atualmente, as relações no backend Java não refletem completamente a estrutura 
+do banco de dados. Nesta sprint, não foi possível mapear as relações de ManyToOne e OneToMany, 
+tendo sido implementadas apenas as de OneToOne. Nas próximas sprints, será prioritário 
+corrigir essas inconsistências para garantir um mapeamento mais adequado e a integridade dos dados.
+
 ---
 # Diagrama de Classes
 
-![Classes]()
+![Classes]() -todo
 
 ---
 
 # Protótipo
-Link: https://www.figma.com/design/uNhAX2GxrdUcTTEWqlcRrb/Challenge-Odontoprev?node-id=0-1&m=dev&t=Tw48bZ3jF8djXHbU-1
+🔗 [Figma](https://www.figma.com/design/uNhAX2GxrdUcTTEWqlcRrb/Challenge-Odontoprev?node-id=0-1&m=dev&t=Tw48bZ3jF8djXHbU-1)
 
+---
 # Vídeo
-Link: 
+🔗 -todo
+
+---
+ 
+
+# Equipe do Projeto
+
+## 🚀 Integrantes
+
+### 1. Alissa Silva Cezero - RM 553954
+**Desenvolveu os entregáveis de**: 
+  - COMPLIANCE & QUALITY ASSURANCE
+  - DISRUPTIVE ARCHITECTURES: IOT, IOB & GENERATIVE IA
+  - MOBILE APP DEVELOPMENT
+    ### [GitHub/lissCez](https://github.com/lissCez)
+
+### 2. Melissa Barbosa de Souza - RM 552535
+**Desenvolveu os entregáveis de**:
+- JAVA ADVANCED
+- MASTERING RELATIONAL AND NON RELATIONAL DATABASE
+  ### [GitHub/melissabsouza](https://github.com/melissabsouza) 
+
+### 3. Nicolas Paiffer do Carmo - RM 554145
+**Desenvolveu os entregáveis de**:
+- ADVANCED BUSINESS DEVELOPMENT WITH .NET
+- DEVOPS TOOLS E CLOUD COMPUTING
+  ### [GitHub/NPaiffer](https://github.com/NPaiffer) 
+
+
+
 
 
